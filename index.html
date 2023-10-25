@@ -1,0 +1,90 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Arranque seguro en Linux</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="alvarobueno21"
+                  title="Arranque seguro en Linux"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Arranque seguro, instalación de GRUB:" duration="3">
+        <p>Las particiones que hemos creado para este Linux, es un volumen LVM cifrado con los siguientes tamaños y nombres de particiones:</p>
+<p>TAMAÑO TOTAL: 25GB</p>
+<ul>
+<li>/raíz   12 GB</li>
+<li>/boot (grub) 250 MB</li>
+<li>/swap 4096 MB (el doble de la RAM)</li>
+<li>/home  5GB para datos personales</li>
+<li>/tmp  1GB</li>
+<li>/usr/local  1GB</li>
+<li>/opt  2GB</li>
+</ul>
+<p class="image-container"><img src="img\\4b76af806cd041d6.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Protección de arranque con contraseña" duration="6">
+        <p>Para ello nos iremos a la terminal y ejecutaremos sudo nano /etc/grub.d/40_custom y al final del fichero agregamos set superusers=&#34;root&#34; y password y la contraseña que elijamos. Le añadimos password_pbkdf2 al principio para cifrar la contraseña:</p>
+<p class="image-container"><img src="img\\d5dd4b57b072c6ec.png"></p>
+<p>Ahora hacemos un sudo update-grub para que se guarden los cambios:</p>
+<p class="image-container"><img src="img\\e43c80ce45448d9d.png"></p>
+<p>Y a continuación ponemos el comando sudo grub-mkpasswd-pbkdf2, con este comando cifraríamos la contraseña para que fuera más seguro todavía:</p>
+<p class="image-container"><img src="img\\68aeda59405e3662.png"></p>
+<p>Y a continuación cambiamos los permisos para el archivo de configuración de GRUB 2 para que solo pueda ser editado por el root:</p>
+<p class="image-container"><img src="img\\955f30cc369c85a3.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Para ocultar el menú de GRUB 2 tenemos que hacer los siguientes pasos" duration="6">
+        <ol type="1">
+<li>Abrimos <em>/etc/default/grub</em>: nano /etc/default/grub (haciendo su – root antes)</li>
+</ol>
+<p class="image-container"><img src="img\\23fe133d33c5e5e0.png"></p>
+<ol type="1">
+<li>Cambiamos <em>GRUB_TIMEOUT=5</em> a <em>GRUB_TIMEOUT=0</em>.</li>
+</ol>
+<p class="image-container"><img src="img\\b242d02f30889a51.png"></p>
+<ol type="1">
+<li>Guardamos el archivo y salimos del editor de texto.</li>
+</ol>
+<p>Tecleamos las siguientes combinaciones: Control O para guardar y Control X para salir del documento</p>
+<ol type="1">
+<li>Que no se nos olvide ejecutar update-grub.</li>
+</ol>
+<p class="image-container"><img src="img\\45e35984ef25eb18.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

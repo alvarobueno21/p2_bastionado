@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2023-10-26T00:38:31+02:00",
+  "id": "alvarobueno21",
+  "duration": 15,
+  "title": "Arranque seguro en Linux",
+  "summary": "Guía bastionado para BIOS/UEFI",
+  "source": ".\\Trabajo2.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "alvarobueno21"
+}
